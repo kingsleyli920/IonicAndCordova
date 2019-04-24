@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      About Us
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle color="primary">Our History</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>
+        tarted in 2010, Ristorante con Fusion quickly established itself as a culinary icon par excellence in Hong Kong. With its
+        unique brand of world fusion cuisine that can be found nowhere else, it enjoys patronage from the A-list clientele
+        in Hong Kong. Featuring four of the best three-star Michelin chefs in the world, you never know what will arrive
+        on your plate the next time you visit us.
+      </p>
+      <p>
+        The restaurant traces its humble beginnings to The Frying Pan, a successful chain started by our CEO, Mr. Peter Pan, that
+        featured for the first time the world's best cuisines in a pan.
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle color="primary">Corporate Leadership</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let leader of leaders" lines="none">
+          <ion-avatar slot="start">
+            <img src="{{ BaseURL+leader.image }}">
+          </ion-avatar>
+          <ion-row>
+            <ion-col>
+              <h4>{{ leader.name }}</h4>
+              <h5>{{ leader.designation}}</h5>
+              <ion-text color="medium">
+                <p>
+                {{ leader.description }}
+                </p>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <div [hidden]="leaders || errMess">
+      <ion-spinner></ion-spinner>
+      <h4>Loading ... Please Wait</h4>
+    </div>
+  
+    <div *ngIf="errMess">
+      <h2>Error</h2>
+      <h4> {{ errMess }}</h4>
+    </div>
+</ion-content>

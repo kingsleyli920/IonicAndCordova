@@ -9,12 +9,13 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: './home/home.module#HomePageModule'
+    loadChildren: '../pages/home/home.module#HomePageModule'
   },
-  {
-    path: 'list',
-    loadChildren: './list/list.module#ListPageModule'
-  }
+  { path: 'about', loadChildren: '../pages/about/about.module#AboutPageModule' },
+  { path: 'menu', loadChildren: '../pages/menu/menu.module#MenuPageModule' },
+  { path: 'contact', loadChildren: '../pages/contact/contact.module#ContactPageModule' },
+  { path: 'dishdetail/:dish', loadChildren: '../pages/dishdetail/dishdetail.module#DishdetailPageModule' },
+  { path: 'favorites', loadChildren: '../pages/favorites/favorites.module#FavoritesPageModule' },
 ];
 
 @NgModule({
