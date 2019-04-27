@@ -9,6 +9,7 @@ import { Http, Response } from '@angular/http';
 import { baseURL } from '../../shared/baseurl';
 import { ProcessHttpmsgService } from './process-httpmsg.service';
 import { catchError, map, delay } from 'rxjs/operators';
+import { Storage } from '@ionic/storage';
 @Injectable({
   providedIn: 'root'
 })
@@ -17,13 +18,24 @@ export class FavoriteService {
   favorites: Array<any>;
 
   constructor(public http: Http,
-    private dishService: DishService) {
-    this.favorites = [];
+    private dishService: DishService,
+    private storage: Storage) {
+    
+    this.storage.get('favorites').then(favorites => {
+      if (favorites) {
+        this.favorites = favorites;
+      } else {
+        this.favorites = [];
+      }
+    });
   }
 
   addFavorite(id: number): boolean {
-    if (!this.isFavorite(id))
+   
+    if (!this.isFavorite(id)) {
       this.favorites.push(id);
+      this.storage.set('favorites', this.favorites);
+    }
     else
       return false;
     return true;
@@ -43,6 +55,7 @@ export class FavoriteService {
     let index = this.favorites.indexOf(id);
     if (index >= 0) {
         this.favorites.splice(index, 1);
+        this.storage.set('favorites', this.favorites);
         return this.getFavorites();
     } else {
         console.log('Deleting non-existant item', id);

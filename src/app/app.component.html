@@ -3,11 +3,17 @@
     <ion-menu>
       <ion-header>
         <ion-toolbar color="primary">
-          <ion-title>Menu</ion-title>
+          <ion-title>Ristorante Con Fusion</ion-title>
         </ion-toolbar>
       </ion-header>
-      <ion-content has-header padding color="primary">
-        <ion-list style="margin: 0; padding: 0;">
+      <ion-content has-header padding color="primary" >
+        <ion-list style="margin: 0; padding: 0;" >
+          <ion-list-header color="primary-light">
+            <ion-thumbnail>
+              <img src="../assets/images/logo.png" />
+            </ion-thumbnail>
+            <h3 style="margin-left: 10px;">Ristorante Con Fusion</h3>
+          </ion-list-header>
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
             <ion-item [routerDirection]="'root'" [routerLink]="[p.url]" color="primary">
               <ion-icon slot="start" [name]="p.icon"></ion-icon>
@@ -20,6 +26,10 @@
             <ion-icon name="restaurant" slot="start"></ion-icon>
             Reserve Table
           </ion-item>
+          <ion-item color="primary" menu-close ion-item (click)= "openLogin()">
+              <ion-icon name="log-in" slot="start"></ion-icon>
+              Login
+            </ion-item>
         </ion-list>
       </ion-content>
     </ion-menu>

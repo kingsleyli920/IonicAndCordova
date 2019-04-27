@@ -10,6 +10,7 @@ import { MenuPage } from '../pages/menu/menu.page';
 import { ContactPage } from '../pages/contact/contact.page';
 import { FavoritesPage } from '../pages/favorites/favorites.page';
 import { ReservationPage } from '../pages/reservation/reservation.page';
+import { LoginPage } from '../pages/login/login.page';
 
 @Component({
   selector: 'app-root',
@@ -68,6 +69,13 @@ export class AppComponent {
   async openReserve() {
     const modal = await this.modalCtrl.create({
       component: ReservationPage
+    });
+    return modal.present();
+  }
+
+  async openLogin() {
+    const modal = await this.modalCtrl.create({
+      component: LoginPage
     });
     return modal.present();
   }

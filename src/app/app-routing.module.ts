@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -16,11 +17,15 @@ const routes: Routes = [
   { path: 'contact', loadChildren: '../pages/contact/contact.module#ContactPageModule' },
   { path: 'dishdetail/:dish', loadChildren: '../pages/dishdetail/dishdetail.module#DishdetailPageModule' },
   { path: 'favorites', loadChildren: '../pages/favorites/favorites.module#FavoritesPageModule' },
+  { path: 'comment', loadChildren: '../pages/comment/comment.module#CommentPageModule' },
+  { path: 'login', loadChildren: '../pages/login/login.module#LoginPageModule' },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [RouterModule]
 })
