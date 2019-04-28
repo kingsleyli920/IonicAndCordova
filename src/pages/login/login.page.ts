@@ -4,6 +4,7 @@ import { Platform } from '@ionic/angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Storage } from '@ionic/storage';
 import { User } from '../../shared/user';
+import { RegisterPage } from '../register/register.page';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -55,6 +56,14 @@ export class LoginPage implements OnInit {
       this.storage.remove('user');
     }
     this.modalCtrl.dismiss();
+  }
+
+  async openRegister() {
+    let modal = await this.modalCtrl.create({
+      component: RegisterPage
+    });
+    modal.present();
+    modal.onDidDismiss().then(() => this.dismiss());
   }
 
 }

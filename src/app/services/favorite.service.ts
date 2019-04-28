@@ -6,10 +6,9 @@ import { DishService } from './dish.service';
 
 import { Observable } from 'rxjs';
 import { Http, Response } from '@angular/http';
-import { baseURL } from '../../shared/baseurl';
-import { ProcessHttpmsgService } from './process-httpmsg.service';
 import { catchError, map, delay } from 'rxjs/operators';
 import { Storage } from '@ionic/storage';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 @Injectable({
   providedIn: 'root'
 })
@@ -19,7 +18,8 @@ export class FavoriteService {
 
   constructor(public http: Http,
     private dishService: DishService,
-    private storage: Storage) {
+    private storage: Storage,
+    private localNotifications: LocalNotifications) {
     
     this.storage.get('favorites').then(favorites => {
       if (favorites) {
@@ -35,6 +35,10 @@ export class FavoriteService {
     if (!this.isFavorite(id)) {
       this.favorites.push(id);
       this.storage.set('favorites', this.favorites);
+      this.localNotifications.schedule({
+        id:id,
+        text: 'Dish ' + id + ' added as a favorite successfully'
+      })
     }
     else
       return false;

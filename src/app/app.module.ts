@@ -7,7 +7,12 @@ import { HttpModule } from '@angular/http';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+import { EmailComposer } from '@ionic-native/email-composer/ngx';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { Camera } from '@ionic-native/camera/ngx';
 import { IonicStorageModule } from '@ionic/storage';
+
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +27,7 @@ import { FavoritesPage } from '../pages/favorites/favorites.page';
 import { ReservationPage } from '../pages/reservation/reservation.page';
 import { CommentPage } from '../pages/comment/comment.page';
 import { LoginPage } from '../pages/login/login.page';
+import { RegisterPage } from '../pages/register/register.page';
 
 import { HomePageModule } from '../pages/home/home.module';
 import { AboutPageModule } from '../pages/about/about.module';
@@ -32,6 +38,7 @@ import { FavoritesPageModule } from '../pages/favorites/favorites.module';
 import { ReservationPageModule } from '../pages/reservation/reservation.module';
 import { CommentPageModule } from '../pages/comment/comment.module';
 import { LoginPageModule } from '../pages/login/login.module';
+import { RegisterPageModule } from '../pages/register/register.module';
 
 import { DishService } from './services/dish.service';
 import { LeaderService } from './services/leader.service';
@@ -52,7 +59,8 @@ import { baseURL } from '../shared/baseurl';
     FavoritesPage,
     ReservationPage,
     CommentPage,
-    LoginPage
+    LoginPage,
+    RegisterPage
   ],
   imports: [
     BrowserModule,
@@ -70,6 +78,7 @@ import { baseURL } from '../shared/baseurl';
     ReservationPageModule,
     CommentPageModule,
     LoginPageModule,
+    RegisterPageModule,
     IonicStorageModule.forRoot()
   ],
   providers: [
@@ -80,7 +89,11 @@ import { baseURL } from '../shared/baseurl';
     LeaderService,
     PromotionService,
     ProcessHttpmsgService,
-    { provide: 'BaseURL', useValue: baseURL }
+    LocalNotifications,
+    EmailComposer,
+    SocialSharing,
+    Camera,
+    { provide: 'BaseURL', useValue: baseURL },
   ],
   bootstrap: [AppComponent]
 })

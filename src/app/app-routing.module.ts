@@ -19,6 +19,7 @@ const routes: Routes = [
   { path: 'favorites', loadChildren: '../pages/favorites/favorites.module#FavoritesPageModule' },
   { path: 'comment', loadChildren: '../pages/comment/comment.module#CommentPageModule' },
   { path: 'login', loadChildren: '../pages/login/login.module#LoginPageModule' },
+  { path: 'register', loadChildren: '../pages/register/register.module#RegisterPageModule' },
 ];
 
 @NgModule({

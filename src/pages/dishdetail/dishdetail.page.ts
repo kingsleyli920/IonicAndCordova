@@ -5,6 +5,7 @@ import { Comment } from '../../shared/comment';
 import { ActivatedRoute } from '@angular/router';
 import { FavoriteService } from '../../app/services/favorite.service';
 import { CommentPage } from '../comment/comment.page';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 @Component({
   selector: 'app-dishdetail',
   templateUrl: './dishdetail.page.html',
@@ -23,15 +24,16 @@ export class DishdetailPage implements OnInit {
     private actionSheetCtrl: ActionSheetController,
     private modalCtrl: ModalController,
     @Inject('BaseURL') private BaseURL,
-    private favoriteService: FavoriteService) {
+    private favoriteService: FavoriteService,
+    private socialSharing: SocialSharing) {
     this.dish = JSON.parse(this.route.snapshot.paramMap.get('dish'));
     this.favorite = this.favoriteService.isFavorite(this.dish.id);
-    
+
     this.getTotalAndAvg();
   }
 
   ngOnInit() {
-    
+
   }
 
   async addToFavorites() {
@@ -53,9 +55,34 @@ export class DishdetailPage implements OnInit {
       }, {
         text: 'Add a Comment',
         handler: () => {
-         this.openCommentModal();
+          this.openCommentModal();
         }
-      }, {
+      },
+      {
+        text:'Share via Facebook',
+        handler: () => {
+          this.socialSharing.shareViaFacebook(
+            this.dish.name + ' -- ' + this.dish.description,
+            this.BaseURL + this.dish.image,
+            ''
+          )
+          .then(() => console.log('Posted successfully to Facebook'))
+          .catch(() => console.log('Failed to posted successfully to Facebook'));
+        }
+      },
+      {
+        text:'Share via Twitter',
+        handler: () => {
+          this.socialSharing.shareViaTwitter(
+            this.dish.name + ' -- ' + this.dish.description,
+            this.BaseURL + this.dish.image,
+            ''
+          )
+          .then(() => console.log('Posted successfully to Facebook'))
+          .catch(() => console.log('Failed to posted successfully to Facebook'));
+        }
+      },
+      {
         text: 'Cancel',
         role: 'cancel',
         handler: () => {

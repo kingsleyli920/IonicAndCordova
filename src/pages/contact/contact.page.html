@@ -34,5 +34,19 @@
         <ion-text color="dark">confusion@food.net</ion-text>
       </p>
     </ion-card-content>
+    <ion-row>
+      <ion-col>
+        <ion-button icon-left clear small>
+          <ion-icon name="call"></ion-icon>
+          <div>call</div>
+        </ion-button>
+      </ion-col>
+      <ion-col>
+          <ion-button icon-left clear small (click)="sendEmail()">
+            <ion-icon name="email"></ion-icon>
+            <div>Email</div>
+          </ion-button>
+        </ion-col>
+    </ion-row>
   </ion-card>
 </ion-content>
